@@ -1,0 +1,8 @@
+{
+  "name": "@sbake/nextcsrf",
+  "version": "0.0.0",
+  "description": "Reserved for a stackbake plugin",
+  "main": "index.js",
+  "author": "stackbake",
+  "license": "NA"
+}
