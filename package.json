@@ -4,5 +4,5 @@
   "description": "Reserved for a stackbake plugin",
   "main": "index.js",
   "author": "stackbake",
-  "license": "NA"
+  "license": "SB"
 }
