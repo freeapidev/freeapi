@@ -1,7 +1,7 @@
 {
-  "name": "sbake",
+  "name": "nextutils",
   "version": "0.0.0",
-  "description": "Reserved for a stackbake plugin",
+  "description": "Utilities for nextjs project",
   "main": "index.js",
   "author": "stackbake",
   "license": "SB"
