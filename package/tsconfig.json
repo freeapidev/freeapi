@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+      "target": "ES2022",                          // Target ECMAScript version for output
+      "module": "CommonJS",                        // Module system to be used in the output
+      "strict": true,                              // Enable all strict type-checking options
+      "esModuleInterop": true,                     // Enable compatibility with ES module exports
+      "forceConsistentCasingInFileNames": true,    // Ensure consistent file naming conventions
+      "skipLibCheck": true,                        // Skip type checking of declaration files
+      "outDir": "./dist",                          // Output directory for compiled JavaScript files
+      "rootDir": "./src",                          // Root directory of your TypeScript source files
+      "resolveJsonModule": true,                   // Allow importing of JSON files as modules
+      "moduleResolution": "node",                  // Use Node.js module resolution
+      "declaration": true,                         // Generate .d.ts files for type declarations
+      "declarationMap": true,                      // Create source maps for declaration files
+      "sourceMap": true                            // Generate source maps for compiled files
+    },
+    "include": [
+      "src/**/*.ts"                                // Include all TypeScript files in the src directory
+    ],
+    "exclude": [
+      "node_modules",                              // Exclude node_modules from the compilation process
+      "dist"                                       // Exclude the output directory to avoid circular references
+    ]
+  }  

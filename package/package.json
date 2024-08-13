@@ -1,0 +1,17 @@
+{
+  "name": "freeapi",
+  "version": "0.0.1",
+  "description": "Collection of free JSON endpoints with more sorting & filtering features",
+  "main": "dist/index.js",
+  "author": "freeapi",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "@types/node": "^22.2.0",
+    "typescript": "^5.2.2"
+  }
+}
