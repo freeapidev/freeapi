@@ -30,8 +30,9 @@ jobs:
       - name: Bump Version and Publish
         run: |
           cd package
-          git config --global user.email "contact@stackbake.com"
-          git config --global user.name "Stackbake Developer"
+          git config --global user.email "info@freeapi.dev"
+          git config --global user.name "FreeAPI Developer"
+          npm i
           npm run build
           npm publish --access public
         env:
