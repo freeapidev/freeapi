@@ -1,8 +1,0 @@
-{
-  "name": "freeapi",
-  "version": "0.0.1",
-  "description": "Collection of free json endpoints with more sorting & filtering features",
-  "main": "index.js",
-  "author": "freeapi",
-  "license": "MIT"
-}
