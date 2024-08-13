@@ -8,14 +8,12 @@ jobs:
   auto-reply:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
-
       - name: Comment on the new issue
         uses: actions/github-script@v6
         with:
           script: |
-            const issue = context.payload.issue;
+            const { issue } = context.payload;
+            const { owner, repo } = context.repo;
             const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
 
             // Define your reply message
@@ -23,8 +21,8 @@ jobs:
 
             // Post a comment on the issue
             await octokit.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
+              owner,
+              repo,
               issue_number: issue.number,
               body: replyMessage
             });
