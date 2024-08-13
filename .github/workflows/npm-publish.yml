@@ -14,9 +14,14 @@ jobs:
         with:
           node-version: 20
       - run: |
+          git config --global user.email "info@freeapi.dev"
+          git config --global user.name "FreeAPI Developer"
           git clone https://github.com/freeapidev/freeapi-data.git
           find freeapi-data -type f -name "index.json" -exec cp {} /package/src/ \;
-          ls
+          tree
+
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
           
 
   # publish-npm:
