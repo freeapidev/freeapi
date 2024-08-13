@@ -1,6 +1,6 @@
 {
   "name": "freeapi",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Collection of free JSON endpoints with more sorting & filtering features",
   "main": "dist/index.js",
   "author": "freeapi",
