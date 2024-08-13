@@ -28,6 +28,9 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org/
       - name: Bump Version and Publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
         run: |
           cd package
 
@@ -52,8 +55,8 @@ jobs:
             git add package.json
             git commit -m "Bump version to $(jq -r .version package.json)"
 
-            # Push the version bump commit
-            git push origin main
+            # Push the version bump commit using the GITHUB_TOKEN
+            git push https://x-access-token:${GITHUB_TOKEN}@github.com/freeapidev/freeapi.git HEAD:main
           else
             echo "Version in package.json is ahead of npm, no need to bump version."
           fi
@@ -62,5 +65,3 @@ jobs:
           npm i
           npm run build
           npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
