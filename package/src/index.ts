@@ -1,6 +1,5 @@
 import fs from 'fs';
 
-// Load data from the JSON file
 const loadData = (): any[] => {
     try {
         const dataBuffer = fs.readFileSync('./data.json');
@@ -12,7 +11,6 @@ const loadData = (): any[] => {
     }
 };
 
-// Get function with pagination
 const get = (page: number = 1, pageSize: number = 10): any => {
     const data = loadData();
     const startIndex = (page - 1) * pageSize;
