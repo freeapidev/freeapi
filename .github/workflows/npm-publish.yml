@@ -10,24 +10,41 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Check for Changes
-        id: check
-        run: |
-          # Fetch recent commits
-          git fetch origin main
 
-          # Get the list of changed files in the current commit
-          changes=$(git diff --name-only HEAD HEAD^)
-          echo "Changed files: $changes"
-          
-          # Determine if relevant files have changed
-          if echo "$changes" | grep -E '^(package/|README\.md)$' > /dev/null; then
-            echo "Changes detected in package or README.md"
-            echo "::set-output name=publish::true"
-          else
-            echo "No relevant changes detected"
-            echo "::set-output name=publish::false"
-          fi
+      - name: Get List of Changed Files
+        id: get-changes
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { data: commits } = await github.rest.repos.listCommits({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: context.ref,
+              per_page: 1
+            });
+
+            if (commits.length === 0) {
+              console.log("No commits found.");
+              return;
+            }
+
+            const { data: commitDetails } = await github.rest.repos.getCommit({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: commits[0].sha
+            });
+
+            const changedFiles = commitDetails.files.map(file => file.filename);
+            console.log("Changed files: ", changedFiles);
+
+            // Set output for next steps
+            if (changedFiles.some(file => file.startsWith('package/') || file === 'README.md')) {
+              core.setOutput('publish', 'true');
+            } else {
+              core.setOutput('publish', 'false');
+            }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build:
     runs-on: ubuntu-latest
