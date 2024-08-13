@@ -1,8 +1,8 @@
 {
-  "name": "admon",
-  "version": "0.0.0",
-  "description": "Utilities for nextjs project",
+  "name": "freeapi",
+  "version": "0.0.1",
+  "description": "Collection of free json endpoints with more sorting & filtering features",
   "main": "index.js",
-  "author": "stackbake",
-  "license": "SB"
+  "author": "freeapi",
+  "license": "MIT"
 }
