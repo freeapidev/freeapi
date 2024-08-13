@@ -29,6 +29,7 @@ jobs:
         run: |
           git config --global user.email "contact@stackbake.com"
           git config --global user.name "Stackbake Developer"
+          npm run build
           npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
