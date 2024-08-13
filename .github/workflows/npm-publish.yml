@@ -30,8 +30,35 @@ jobs:
       - name: Bump Version and Publish
         run: |
           cd package
-          git config --global user.email "info@freeapi.dev"
-          git config --global user.name "FreeAPI Developer"
+
+          # Get the current version from package.json
+          current_version=$(jq -r .version package.json)
+
+          # Get the latest published version from npm
+          npm_version=$(npm show . version)
+
+          echo "Current version in package.json: $current_version"
+          echo "Published version on npm: $npm_version"
+
+          if [ "$current_version" == "$npm_version" ]; then
+            echo "Versions are the same, bumping version..."
+            
+            # Bump the version by 0.0.1
+            npm version patch --no-git-tag-version
+
+            # Commit the version bump
+            git config --global user.email "info@freeapi.dev"
+            git config --global user.name "FreeAPI Developer"
+            git add package.json
+            git commit -m "Bump version to $(jq -r .version package.json)"
+
+            # Push the version bump commit
+            git push origin main
+          else
+            echo "Version in package.json is ahead of npm, no need to bump version."
+          fi
+
+          # Build and publish the package
           npm i
           npm run build
           npm publish --access public
